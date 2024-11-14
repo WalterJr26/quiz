@@ -24,7 +24,7 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   int _currentQuestionIndex = 0;
   int _score = 0;
-  int _timer = 30; // Tempo em segundos para cada pergunta
+  int _timer = 30; 
   late Timer _timerController; // O controlador do cronômetro
 
   final List<Map<String, dynamic>> _questions = [
@@ -99,12 +99,12 @@ class _QuizPageState extends State<QuizPage> {
   @override
   void initState() {
     super.initState();
-    _startTimer(); // Inicia o cronômetro quando o quiz começa
+    _startTimer(); 
   }
 
   @override
   void dispose() {
-    _timerController.cancel(); // Cancela o cronômetro quando a tela é destruída
+    _timerController.cancel(); 
     super.dispose();
   }
 
@@ -115,7 +115,7 @@ class _QuizPageState extends State<QuizPage> {
           _timer--;
         });
       } else {
-        // Quando o tempo acabar, avançamos para a próxima pergunta
+        
         _nextQuestion();
       }
     });
@@ -125,9 +125,9 @@ class _QuizPageState extends State<QuizPage> {
     if (_currentQuestionIndex < _questions.length - 1) {
       setState(() {
         _currentQuestionIndex++;
-        _timer = 30; // Reinicia o cronômetro para a próxima pergunta
+        _timer = 30; 
       });
-      _startTimer(); // Reinicia o cronômetro para a próxima pergunta
+      _startTimer(); 
     } else {
       _showScoreDialog(); // Mostra a pontuação final
     }
@@ -137,7 +137,6 @@ class _QuizPageState extends State<QuizPage> {
     if (selectedOption == _questions[_currentQuestionIndex]['answer']) {
       _score++;
     }
-
     _nextQuestion();
   }
 
@@ -194,25 +193,21 @@ class _QuizPageState extends State<QuizPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Indicador de pergunta (ex: "Pergunta 1 de 10")
           Text(
             'Pergunta ${_currentQuestionIndex + 1} de ${_questions.length}',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 10),
           
-          // Cronômetro
           Text(
             'Tempo: $_timer s',
             style: TextStyle(fontSize: 24, color: Colors.red),
           ),
           SizedBox(height: 20),
 
-          // Imagem relacionada à pergunta
           Image.asset(question['imagem'], height: 200, fit: BoxFit.cover),
           SizedBox(height: 20),
 
-          // Pergunta
           Text(
             question['question'],
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
