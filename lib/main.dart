@@ -1,4 +1,4 @@
-import 'dart:async'; // Importa o Timer
+import 'dart:async'; 
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class _QuizPageState extends State<QuizPage> {
   int _currentQuestionIndex = 0;
   int _score = 0;
   int _timer = 30; 
-  late Timer _timerController; // O controlador do cronômetro
+  late Timer _timerController; 
 
   final List<Map<String, dynamic>> _questions = [
     {
@@ -129,7 +129,7 @@ class _QuizPageState extends State<QuizPage> {
       });
       _startTimer(); 
     } else {
-      _showScoreDialog(); // Mostra a pontuação final
+      _showScoreDialog(); 
     }
   }
 
@@ -163,9 +163,9 @@ class _QuizPageState extends State<QuizPage> {
     setState(() {
       _score = 0;
       _currentQuestionIndex = 0;
-      _timer = 30; // Reinicia o cronômetro
+      _timer = 30; 
     });
-    _startTimer(); // Reinicia o cronômetro
+    _startTimer(); 
   }
 
   @override
@@ -214,7 +214,7 @@ class _QuizPageState extends State<QuizPage> {
           ),
           SizedBox(height: 20),
 
-          // Botões de resposta
+          
           ...List.generate(question['options'].length, (index) {
             return ElevatedButton(
               onPressed: () => _answerQuestion(index),
